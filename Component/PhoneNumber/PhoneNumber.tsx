@@ -56,7 +56,7 @@ export default function PhoneNumber() {
         <View style={styles.buttonContainer}>
           <CustomButton
             onPress={verifyNumber}
-            style={{ borderRadius: 20 }}
+            style={{ borderRadius: 25 }}
             title="Verify Phone Number"
           />
         </View>

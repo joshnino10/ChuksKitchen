@@ -55,7 +55,7 @@ export default function Email() {
         <View style={styles.buttonContainer}>
           <CustomButton
             onPress={verifyNumber}
-            style={{ borderRadius: 20 }}
+            style={{ borderRadius: 25 }}
             title="Verify Email Address"
           />
         </View>

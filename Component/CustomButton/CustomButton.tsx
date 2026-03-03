@@ -93,9 +93,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#5856D6',
   },
   text: {
+    fontFamily: 'MontserratBold',
     fontSize: 16,
-    fontFamily: 'intermedium',
     fontWeight: '700',
+    color: '#FFFFFF'
   },
   
  
