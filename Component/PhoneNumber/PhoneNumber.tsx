@@ -1,64 +1,81 @@
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+    Keyboard,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableWithoutFeedback,
+    View,
+} from 'react-native';
 import CustomButton from '../CustomButton/CustomButton';
 
 export default function PhoneNumber() {
   const [number, setNumber] = useState('');
+  const [error, setError] = useState('');
+  const router = useRouter();
 
-  const router = useRouter()
-
-  const verifyNumber = ()=> {
-    if(!number)
-    router.replace('/(auth)/verifynumber')
-  }
+  const verifyNumber = () => {
+    if (!number) {
+      setError('Please enter your mobile number');
+      return;
+    }
+    setError('');
+    router.push('/(auth)/verifynumber');
+  };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Mobile Number</Text>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        keyboardShouldPersistTaps="handled"
+      >
+        <Text style={styles.label}>Mobile Number</Text>
 
-      <View style={styles.inputContainer}>
-       
-        <Text style={styles.countryCode}>+234</Text>
+        <View style={styles.inputContainer}>
+          <Text style={styles.countryCode}>+234</Text>
+          <View style={styles.divider} />
+          <TextInput
+            style={styles.input}
+            placeholder="Enter your mobile number"
+            keyboardType="phone-pad"
+            value={number}
+            onChangeText={text => {
+              setNumber(text);
+              if (text) setError('');
+            }}
+            maxLength={10}
+          />
+        </View>
 
-    
-        <View style={styles.divider} />
+        {/* Error message */}
+        {error.length > 0 && <Text style={styles.error}>{error}</Text>}
 
-        <TextInput
-          style={styles.input}
-          placeholder="Enter your mobile number"
-          keyboardType="phone-pad"
-          value={number}
-          onChangeText={setNumber}
-          maxLength={10} 
-        />
-      </View> 
-
-   <View style={styles.buttonContainer}>
-      <CustomButton
-        onPress={verifyNumber}
-        style={{borderRadius:20,}}
-       title='Verify Phone Number'/>
-   </View>
-
-
-    </View>
+        <View style={styles.buttonContainer}>
+          <CustomButton
+            onPress={verifyNumber}
+            style={{ borderRadius: 20 }}
+            title="Verify Phone Number"
+          />
+        </View>
+      </ScrollView>
+    </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-   
-    marginVertical: 20,
+    // padding: 20,
+    flexGrow: 1,
+    justifyContent: 'center',
   },
-
   label: {
     fontSize: 16,
     fontWeight: '600',
     marginBottom: 8,
     color: '#333',
   },
-
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -68,25 +85,27 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     backgroundColor: '#F6F6F6',
   },
-
   countryCode: {
     fontSize: 16,
     color: '#555',
   },
-
   divider: {
-    width: 1,        
-    height: '60%',     
+    width: 1,
+    height: '60%',
     backgroundColor: '#ccc',
-    marginHorizontal: 8, 
+    marginHorizontal: 8,
   },
-
   input: {
     flex: 1,
     fontSize: 16,
     color: '#333',
   },
-  buttonContainer:{
-    marginTop:30
-  }
+  buttonContainer: {
+    marginTop: 30,
+  },
+  error: {
+    color: 'red',
+    marginTop: 5,
+    fontSize: 14,
+  },
 });
