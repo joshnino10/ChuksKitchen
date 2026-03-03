@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import CustomButton from '../CustomButton/CustomButton';
 
-export default function Email() {
+export default function EmailLogin() {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
@@ -55,8 +55,8 @@ export default function Email() {
         <View style={styles.buttonContainer}>
           <CustomButton
             onPress={verifyNumber}
-            style={{ borderRadius: 20 }}
-            title="Verify Email Address"
+            style={{ borderRadius: 10 }}
+            title="Log in"
           />
         </View>
       </ScrollView>

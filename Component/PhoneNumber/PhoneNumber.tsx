@@ -38,8 +38,9 @@ export default function PhoneNumber() {
           <View style={styles.divider} />
           <TextInput
             style={styles.input}
-            placeholder="Enter your mobile number"
+            placeholder="80 000 0000"
             keyboardType="phone-pad"
+            placeholderTextColor="#A1A1A1"
             value={number}
             onChangeText={text => {
               setNumber(text);
@@ -71,10 +72,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   label: {
+    fontFamily: 'MontserratMedium',
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: '500',
     marginBottom: 8,
-    color: '#333',
+    color: '#000000',
   },
   inputContainer: {
     flexDirection: 'row',
@@ -86,8 +88,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#F6F6F6',
   },
   countryCode: {
+    fontFamily:'MontserratMedium',
     fontSize: 16,
-    color: '#555',
+    color: '#A1A1A1',
   },
   divider: {
     width: 1,
@@ -96,6 +99,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
   },
   input: {
+    fontFamily: 'MontserratMedium',
     flex: 1,
     fontSize: 16,
     color: '#333',

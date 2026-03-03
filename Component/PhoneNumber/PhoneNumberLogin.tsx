@@ -11,18 +11,18 @@ import {
 } from 'react-native';
 import CustomButton from '../CustomButton/CustomButton';
 
-export default function Email() {
-  const [email, setEmail] = useState('');
+export default function PhoneNumberLogin() {
+  const [number, setNumber] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
 
   const verifyNumber = () => {
-    if (!email) {
-      setError('Please enter your email');
+    if (!number) {
+      setError('Please enter your mobile number');
       return;
     }
     setError('');
-    router.push('/(auth)/verifyemail');
+    router.push('/(auth)/verifynumber');
   };
 
   return (
@@ -31,21 +31,22 @@ export default function Email() {
         contentContainerStyle={styles.container}
         keyboardShouldPersistTaps="handled"
       >
-        <Text style={styles.label}>Email Address</Text>
+        <Text style={styles.label}>Mobile Number</Text>
 
         <View style={styles.inputContainer}>
-        
+          <Text style={styles.countryCode}>+234</Text>
+          <View style={styles.divider} />
           <TextInput
             style={styles.input}
-            placeholder="example@gmail.com"
-            keyboardType="email-address"
+            placeholder="80 000 0000"
+            keyboardType="phone-pad"
             placeholderTextColor="#A1A1A1"
-            value={email}
+            value={number}
             onChangeText={text => {
-              setEmail(text);
+              setNumber(text);
               if (text) setError('');
             }}
-           
+            maxLength={10}
           />
         </View>
 
@@ -55,8 +56,8 @@ export default function Email() {
         <View style={styles.buttonContainer}>
           <CustomButton
             onPress={verifyNumber}
-            style={{ borderRadius: 20 }}
-            title="Verify Email Address"
+            style={{ borderRadius: 10 }}
+            title="Log In"
           />
         </View>
       </ScrollView>
@@ -66,7 +67,7 @@ export default function Email() {
 
 const styles = StyleSheet.create({
   container: {
-
+    // padding: 20,
     flexGrow: 1,
     justifyContent: 'center',
   },
@@ -87,8 +88,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#F6F6F6',
   },
   countryCode: {
+    fontFamily:'MontserratMedium',
     fontSize: 16,
-    color: '#555',
+    color: '#A1A1A1',
   },
   divider: {
     width: 1,
