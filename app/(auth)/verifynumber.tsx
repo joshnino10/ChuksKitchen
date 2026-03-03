@@ -61,6 +61,9 @@ export default function VerifyNumber() {
 
   return (
     <SafeAreaView style={styles.container}>
+     
+     <View>
+
       <TouchableOpacity onPress={goBack}>
         <MaterialIcons name="arrow-back-ios" size={24} color="black" />
       </TouchableOpacity>
@@ -69,7 +72,7 @@ export default function VerifyNumber() {
         <Image
           source={require("../../assets/images/small product logo.png")}
           style={styles.logo}
-        />
+          />
         <Text style={styles.title}>Verify Your Number</Text>
         <Text style={styles.subtitle}>
           Enter the 4-digit code sent to
@@ -101,10 +104,10 @@ export default function VerifyNumber() {
               textAlign: "center",
             },
             focusStickStyle: {
-              borderColor: "#FE83009",
+              borderColor: "#FE8300",
             },
           }}
-        />
+          />
 
         {/* Resend OTP section */}
         <View style={styles.resendContainer}>
@@ -113,9 +116,9 @@ export default function VerifyNumber() {
             <Text
               style={[
                 styles.resendButton,
-                { color: canResend ? "#4CAF50" : "#999" },
+                { color: canResend ? "#4CAF50" : "#FE8300" },
               ]}
-            >
+              >
               {canResend ? "Resend Code" : `Resend Code in 00:${timer}`}
             </Text>
           </TouchableOpacity>
@@ -129,7 +132,15 @@ export default function VerifyNumber() {
             <CustomButton title="Confirm Code" onPress={verifyOtp} />
           )}
         </View>
+       </View>
       </View>
+
+      <View>
+        <Text style={styles.SecureLabel}>Secure encrypted verification process</Text>
+       </View>
+      
+
+
     </SafeAreaView>
   );
 }
@@ -138,6 +149,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 16,
+    justifyContent:'space-between',
     backgroundColor: "#fff",
   },
   title: {
@@ -180,11 +192,25 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   resendText: {
+    fontFamily:'MontserratMedium',
     fontSize: 14,
-    color: "#555",
+    color: "#8D8781",
+    fontWeight:'500',
   },
   resendButton: {
+    fontFamily:'MontserratSemiBold',
+    textAlign:'center',
     fontSize: 14,
     fontWeight: "600",
+    color:'#FE8300'
+  },
+
+  SecureLabel:{
+    fontFamily:'MonserratMedium',
+    textAlign:'center',
+    fontSize:14,
+    color: '#D3D3D3'
+    
+
   },
 });

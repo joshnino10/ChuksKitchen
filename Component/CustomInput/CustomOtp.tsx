@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     color: "#2A2E34",
   },
   focusStick: {
-    backgroundColor: "#F7F7F7",
+    backgroundColor: "#FE8300",
   },
   pinCodeContainer: {
     width: 55,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5, 
     borderRadius: 12,
     borderWidth: 0,
-    borderColor: "#DDDDDD",
+    borderColor: "#FE8300",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#F7F7F7"
