@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function Phonenumber() {
+export default function Email() {
   return (
     <View>
-      <Text>phonenumber</Text>
+      <Text>Email</Text>
     </View>
   )
 }
