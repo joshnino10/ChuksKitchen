@@ -10,7 +10,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import Animated, { FadeInRight, SlideInRight, SlideOutLeft } from "react-native-reanimated";
+import Animated, {
+  SlideInRight,
+  SlideOutLeft,
+} from "react-native-reanimated";
 
 const { width, height } = Dimensions.get("window");
 
@@ -55,16 +58,15 @@ export default function Onboarding() {
   return (
     <View style={styles.container}>
       <StatusBar
-        barStyle="dark-content"
+        barStyle="light-content"
         translucent
         backgroundColor="transparent"
       />
 
-      {/* Animated full-screen container */}
       <Animated.View
-        key={steps} // triggers animation on step change
-        entering={FadeInRight.duration(1000)} // slow slide-in
-        exiting={SlideOutLeft.duration(1200)} // slow slide-out
+        key={steps}
+        entering={SlideInRight.springify().duration(700)}
+        exiting={SlideOutLeft.springify().duration(700)}
         style={{ width, height }}
       >
         <ImageBackground
@@ -87,12 +89,15 @@ export default function Onboarding() {
             <Text style={styles.title}>{currentItem.title2}</Text>
             <Text style={styles.subtitle}>{currentItem.subtitle}</Text>
 
-            {/* Dots */}
+            {/* Dots Indicator */}
             <View style={styles.indicatorContainer}>
               {onboarding.map((_, index) => (
                 <View
                   key={index}
-                  style={[styles.dot, index === steps && styles.activeDot]}
+                  style={[
+                    styles.dot,
+                    index === steps && styles.activeDot,
+                  ]}
                 />
               ))}
             </View>
@@ -102,8 +107,10 @@ export default function Onboarding() {
               <View>
                 <Text style={styles.step}>STEP</Text>
                 <Text style={styles.stepText}>
-                  <Text style={styles.activeStepNumber}>{steps + 1}</Text> /{" "}
-                  {onboarding.length}
+                  <Text style={styles.activeStepNumber}>
+                    {steps + 1}
+                  </Text>{" "}
+                  / {onboarding.length}
                 </Text>
               </View>
 
@@ -123,6 +130,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#000",
   },
+
   image: {
     justifyContent: "flex-end",
   },
@@ -163,6 +171,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginTop: 20,
   },
+
   dot: {
     width: 8,
     height: 8,
@@ -170,16 +179,33 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.4)",
     marginRight: 6,
   },
-  activeDot: { width: 40, backgroundColor: "#FE8300" },
+
+  activeDot: {
+    width: 40,
+    backgroundColor: "#FE8300",
+  },
+
   steprow: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     marginTop: 30,
   },
-  step: { color: "white", fontSize: 14 },
-  stepText: { color: "#fff", fontSize: 18 },
-  activeStepNumber: { fontWeight: "700" },
+
+  step: {
+    color: "white",
+    fontSize: 14,
+  },
+
+  stepText: {
+    color: "#fff",
+    fontSize: 18,
+  },
+
+  activeStepNumber: {
+    fontWeight: "700",
+  },
+
   button: {
     height: 58,
     width: 58,
